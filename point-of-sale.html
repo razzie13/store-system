@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Point of Sale System</title>
+    <style>
+        body  {
+            background-color: rgb(236, 234, 234);
+        }
+        #item-number-input  {
+            width: 300px;
+            height: 30px;
+            font-weight: 24px;
+            font-weight: bold;
+            border-style: hidden;
+            border-radius: 15px;
+        }
+        #check-code-button  {
+            width: 150px;
+            height: 30px;
+            background-color: green;
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+            border-style: hidden;
+            border-radius: 15px;
+            margin-left: 14px;
+        }
+        .item-reciept  {
+            background-color: white;
+            width: 550px;
+            padding: 20px 20px 40px 20px;
+            box-sizing: border-box;
+
+        }
+        .item-reciept h2  {
+            margin-bottom: -30px;
+            margin-left: 34px;
+        }
+        .item-reciept h2 span  {
+            float: right;
+        }
+        #item-reciept  {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        #item-reciept button  {
+            width: 20px;
+            height: 20px;
+            color: white;
+            background-color: orangered;
+            border-style: hidden;
+            border-radius: 10px;
+            float: left;
+            margin-top: 3px;
+        }
+        #item-total h2 {
+            margin-bottom: 10px;
+        }
+        #item-total span:before {
+            content: '$';
+        }
+        #calculate-amount  {
+            margin-top: 40px;
+        }
+
+        @media print  {
+            #item-number-input, #check-code-button, #complete-transaction  {
+                display: none;
+            }
+
+            #return-policy span  {
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+            #item-reciept button  {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Buy-The-Burger</h2>
+    <h4 id="reciept-number"></h4><!--year-month-date-hour-minute-second for reciept number-->
+    <input id="item-number-input" placeholder="input code number here" onfocus="this.value = ''" onblur="this.placeholder = 'input code number here'"></input><button id="check-code-button" onclick="lookUpItemCode()">click to enter</button>
+    <div id="item-reciept" class="item-reciept"></div>
+    <div id="item-total" class="item-reciept">
+        <h2>Your Total: <span id="item-total-h2">00.00</span></h2>
+    </div>
+    <button id="complete-transaction" onclick="completeTransaction()">Complete Transaction</button>
+
+    <div id="return-policy">
+        <p><span>keep your reciept.</span> Products can be returned within 7 days of purchase.</p>
+    </div>
+</body>
+
+<!-- FOOD PRODUCTS DATABASE -->
+<script src="data/food-products.js"></script>
+
+<!-- CODE NEEDED TO CREATE RECIEPT NUMBERS USING CURRENT DATE AND TIME -->
+<script src="scripts/create-date.js"></script>
+
+<script>
+
+
+    let itemReciept = []; 
+    let storeRecieptRecords = [];
+
+    function lookUpItemCode()  {
+        console.clear();
+        let searchInput = document.getElementById('item-number-input').value;
+        let itemFound = foodProducts.find(e => e.itemCode == searchInput);  
+
+        if (itemFound == undefined) {
+            alert('not found');
+        }
+
+        if (itemFound.promo == true)  {
+            itemFound.itemPrice = itemFound.itemPromo
+        }
+
+        itemReciept.push({itemName: itemFound.itemBrand + ' ' + itemFound.itemDescription + ' ' + itemFound.itemType, itemAmount: itemFound.itemPrice});
+        console.log(itemReciept);
+        pushToItemReciept();
+
+        //document.getElementById('total-amount').innerHTML = itemReciept[itemAmount].reduce(totalAmount);
+
+        //document.getElementById('produce-input').addEventListener('focus', clearInputRequest);
+    }
+
+    function pushToItemReciept()  {
+        console.log('function pushToItemReciept')      
+        let i;
+        let recieptLineItem = "";
+        for (i = 0; i < itemReciept.length; i++)  {
+            recieptLineItem += '<div id = ' + [i] + '><h2>' + itemReciept[i].itemName + ' <span>' +  itemReciept[i].itemAmount + '</span></h2><button id=' + [i] + ' onclick=removeListArrayElement(this.id)>X</button></div><br>';
+            document.getElementById('item-reciept').innerHTML = recieptLineItem;            
+        }
+        calculateAmount();
+    }
+
+    function calculateAmount()  {
+        console.log('function calculateAmount')
+
+        document.getElementById("item-total-h2").innerHTML = itemReciept.reduce(function(prev, cur) {
+        return prev + cur.itemAmount;
+            }, 0);
+    }
+
+    function removeListArrayElement(clicked)  {
+        itemReciept.splice(clicked , 1);  
+        pushToItemReciept()
+    }
+
+    function completeTransaction()  {
+        console.log('function completeTransaction')
+        document.getElementById("reciept-number").innerHTML = 'Your Reciept Number: ' + year + month + day + hour + minute + second;
+        storeRecieptRecords.push({recieptNumber: year + month + day + hour + minute + second, itemsPurchased: itemReciept});
+        window.print();
+        //itemReciept = []; 
+        document.getElementById("reciept-number").innerHTML = '';
+        console.log(itemReciept);
+        console.log(storeRecieptRecords);
+        //localStorage.removeItem('reciepts')
+        //localStorage.setItem('reciepts', storeRecieptRecords)
+    }
+
+    var input = document.getElementById("item-number-input");    
+    input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13)   {
+        document.getElementById('check-code-button').click();
+        document.getElementById("item-number-input").value = "";
+    }
+
+    if (storeRecieptRecords.length >= 40)  {
+        document.title = 'Customer Records: ' + month + ' ' +  year + ' ' + day;
+        window.print();
+        storeRecieptRecords = [];
+    }
+});
+
+</script>
+</html>
