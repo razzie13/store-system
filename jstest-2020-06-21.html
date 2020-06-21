@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Store</title>
+    <link rel="stylesheet" type="text/css" href="styles/webstore.css">
+</head>
+<body>
+    
+    <header>
+        <div id="header-left">
+            <h2>buy-the-burger.com</h2>
+        </div>
+        <div id="header-right">
+            <h5 id="shopping-cart"></h5>
+            <h6 id="view-your-cart">view your cart</h6><h6 id="proceed-to-checkout">proceed to checkout</h6>
+        </div>
+    </header>
+
+    <div id="shopping-cart-window"></div>
+
+    <main id="products">
+        <div id="food-products" class="food-items"></div>
+    </main>
+
+    <div id="item-code-test">
+        <h3 id="item-name"></h3>
+    </div>
+
+<!-- FOOD PRODUCTS DATABASE -->
+<script src="data/plucodes-produce.js"></script>
+
+<script>
+    let shoppingCart = [];
+    document.getElementById('shopping-cart').innerText = 'Items in your cart: ' + shoppingCart.length;
+    
+</script>
+
+<!-- CREATE ITEM CARDS ON WEBPAGE-->
+<script src="scripts/create-item-cards.js"></script>
+
+<!-- ADD ITEMS TO CART -->
+<script src="scripts/add-to-cart.js"></script>
+
+<!-- VIEW CART CONTENTS -->
+<script src="scripts/view-cart-contents.js"></script>
+
+<!-- HIDE CART CONTENTS -->   
+<script src="scripts/hide-cart-contents.js"></script>
+
+<!-- EVENT LISTENERS -->  
+<script>
+    document.getElementById('view-your-cart').addEventListener('click', viewCartContents);
+
+    
+</script>
+
+</body>
+
+</html>

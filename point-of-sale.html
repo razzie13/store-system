@@ -7,6 +7,23 @@
     <style>
         body  {
             background-color: rgb(236, 234, 234);
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #left-side  {
+            float: left;
+            height: 65vh;
+            margin: 20px 0 0 40px;
+        }
+        #right-side  {
+            float: right;
+            background-color: white;
+            width: 65vw;
+            height: 71.8vh;
+            border-style: hidden;
+            border-radius: 15px;
+            margin: 90px 40px 0 0;
         }
         #item-number-input  {
             width: 300px;
@@ -15,6 +32,8 @@
             font-weight: bold;
             border-style: hidden;
             border-radius: 15px;
+            padding-left: 15px;
+            box-sizing: border-box;
         }
         #check-code-button  {
             width: 150px;
@@ -32,7 +51,8 @@
             width: 550px;
             padding: 20px 20px 40px 20px;
             box-sizing: border-box;
-
+            text-transform: capitalize;
+            font-size: 14px;
         }
         .item-reciept h2  {
             margin-bottom: -30px;
@@ -44,6 +64,8 @@
         #item-reciept  {
             margin-top: 20px;
             margin-bottom: 20px;
+            height: 80%;
+            overflow: scroll;
         }
         #item-reciept button  {
             width: 20px;
@@ -64,6 +86,19 @@
         #calculate-amount  {
             margin-top: 40px;
         }
+        #return-policy  {
+            font-weight: bold;
+            font-size: 42px;
+            position: absolute;
+            bottom: 32px;
+            left: 40px;
+            color: #333333
+        }
+
+        #return-policy span  {
+            text-transform: uppercase;
+            font-size: 48px;
+        }
 
         @media print  {
             #item-number-input, #check-code-button, #complete-transaction  {
@@ -77,10 +112,24 @@
             #item-reciept button  {
                 display: none;
             }
+            #right-side  {
+                display: none;
+            }
+            #item-reciept  {
+                min-height: 80%;
+                overflow: visible;
+            }
+        }
+
+        @media screen and (max-width: 1900px)  {
+            #right-side  {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+<div id="left-side">
     <h2>Buy-The-Burger</h2>
     <h4 id="reciept-number"></h4><!--year-month-date-hour-minute-second for reciept number-->
     <input id="item-number-input" placeholder="input code number here" onfocus="this.value = ''" onblur="this.placeholder = 'input code number here'"></input><button id="check-code-button" onclick="lookUpItemCode()">click to enter</button>
@@ -91,12 +140,15 @@
     <button id="complete-transaction" onclick="completeTransaction()">Complete Transaction</button>
 
     <div id="return-policy">
-        <p><span>keep your reciept.</span> Products can be returned within 7 days of purchase.</p>
+        <p><span>keep your reciept.</span> Many Products can be returned within 7 days of purchase.</p>
     </div>
+</div>
+<div id="right-side"></div>
 </body>
 
 <!-- FOOD PRODUCTS DATABASE -->
 <script src="data/food-products.js"></script>
+<script src="data/plucodes-produce.js"></script>
 
 <!-- CODE NEEDED TO CREATE RECIEPT NUMBERS USING CURRENT DATE AND TIME -->
 <script src="scripts/create-date.js"></script>
@@ -110,15 +162,24 @@
     function lookUpItemCode()  {
         console.clear();
         let searchInput = document.getElementById('item-number-input').value;
-        let itemFound = foodProducts.find(e => e.itemCode == searchInput);  
+        //let itemFound = foodProducts.find(e => e.itemCode == searchInput);  
+        let itemFound = foodProducts.find(e => e.itemCode == searchInput) || produce.find(e => e.itemCode == searchInput);  
 
         if (itemFound == undefined) {
-            alert('not found');
+            alert('Item not on file. Inform Mallory. And get her a Two Cream Coffee from McDonalds');
         }
 
         if (itemFound.promo == true)  {
             itemFound.itemPrice = itemFound.itemPromo
         }
+
+        if (itemFound.weighedItem == true)  {
+            let weightEntered = prompt(itemFound.itemDescription + ' ' + itemFound.itemType + " are a Weighed Item. Enter Item Weight in Grams.");
+            let weight = (weightEntered * 0.001)
+            itemFound.itemPrice = (weight * itemFound.itemPrice);
+        }
+
+
 
         itemReciept.push({itemName: itemFound.itemBrand + ' ' + itemFound.itemDescription + ' ' + itemFound.itemType, itemAmount: itemFound.itemPrice});
         console.log(itemReciept);
@@ -128,6 +189,16 @@
 
         //document.getElementById('produce-input').addEventListener('focus', clearInputRequest);
     }
+
+    /*
+    function enterWeightPrompt()  {
+        console.log('function enterWeightPrompt')
+        var weight = prompt("Weighed Item. Enter Item Weight in Grams.");
+        if (weight > 0)  {
+            itemFound.itemPrice = (weight * itemFound.itemPrice)
+        }
+    }
+*/
 
     function pushToItemReciept()  {
         console.log('function pushToItemReciept')      
