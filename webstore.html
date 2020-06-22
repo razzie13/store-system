@@ -10,7 +10,7 @@
     
     <header>
         <div id="header-left">
-            <h2>buy-the-burger.com</h2>
+            <h2 id="store-name"></h2>
         </div>
         <div id="header-right">
             <h5 id="shopping-cart"></h5>
@@ -29,13 +29,16 @@
     </div>
 
 <!-- FOOD PRODUCTS DATABASE -->
-<script src="data/food-products.js"></script>
+<script src="data/items-meat.js"></script>
 
 <script>
     let shoppingCart = [];
     document.getElementById('shopping-cart').innerText = 'Items in your cart: ' + shoppingCart.length;
     
 </script>
+
+<!-- STORE DATA CONFIG FILE-->
+<script src="data/site-data-config.js"></script>
 
 <!-- CREATE ITEM CARDS ON WEBPAGE-->
 <script src="scripts/create-item-cards.js"></script>

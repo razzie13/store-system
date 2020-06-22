@@ -119,6 +119,19 @@
                 min-height: 80%;
                 overflow: visible;
             }
+            #return-policy  {
+            font-weight: bold;
+            font-size: 10px;
+            position: absolute;
+            bottom: 32px;
+            left: 40px;
+            color: black;
+            }
+
+            #return-policy span  {
+                text-transform: uppercase;
+                font-size: 14px;
+            }
         }
 
         @media screen and (max-width: 1900px)  {
@@ -130,7 +143,7 @@
 </head>
 <body>
 <div id="left-side">
-    <h2>Buy-The-Burger</h2>
+    <h2 id="store-name"></h2>
     <h4 id="reciept-number"></h4><!--year-month-date-hour-minute-second for reciept number-->
     <input id="item-number-input" placeholder="input code number here" onfocus="this.value = ''" onblur="this.placeholder = 'input code number here'"></input><button id="check-code-button" onclick="lookUpItemCode()">click to enter</button>
     <div id="item-reciept" class="item-reciept"></div>
@@ -138,17 +151,24 @@
         <h2>Your Total: <span id="item-total-h2">00.00</span></h2>
     </div>
     <button id="complete-transaction" onclick="completeTransaction()">Complete Transaction</button>
-
+    <!--
     <div id="return-policy">
         <p><span>keep your reciept.</span> Many Products can be returned within 7 days of purchase.</p>
     </div>
+    -->
 </div>
 <div id="right-side"></div>
 </body>
 
+<!-- STORE DATA CONFIG FILE-->
+<script src="data/site-data-config.js"></script>
+
+<!-- CLICK TO ENTER-->
+<script src="scripts/global-click-to-enter.js"></script>
+
 <!-- FOOD PRODUCTS DATABASE -->
-<script src="data/food-products.js"></script>
-<script src="data/plucodes-produce.js"></script>
+<script src="data/items-meat.js"></script>
+<script src="data/items-produce.js"></script>
 
 <!-- CODE NEEDED TO CREATE RECIEPT NUMBERS USING CURRENT DATE AND TIME -->
 <script src="scripts/create-date.js"></script>
@@ -162,7 +182,6 @@
     function lookUpItemCode()  {
         console.clear();
         let searchInput = document.getElementById('item-number-input').value;
-        //let itemFound = foodProducts.find(e => e.itemCode == searchInput);  
         let itemFound = foodProducts.find(e => e.itemCode == searchInput) || produce.find(e => e.itemCode == searchInput);  
 
         if (itemFound == undefined) {
@@ -179,26 +198,10 @@
             itemFound.itemPrice = (weight * itemFound.itemPrice);
         }
 
-
-
         itemReciept.push({itemName: itemFound.itemBrand + ' ' + itemFound.itemDescription + ' ' + itemFound.itemType, itemAmount: itemFound.itemPrice});
         console.log(itemReciept);
         pushToItemReciept();
-
-        //document.getElementById('total-amount').innerHTML = itemReciept[itemAmount].reduce(totalAmount);
-
-        //document.getElementById('produce-input').addEventListener('focus', clearInputRequest);
     }
-
-    /*
-    function enterWeightPrompt()  {
-        console.log('function enterWeightPrompt')
-        var weight = prompt("Weighed Item. Enter Item Weight in Grams.");
-        if (weight > 0)  {
-            itemFound.itemPrice = (weight * itemFound.itemPrice)
-        }
-    }
-*/
 
     function pushToItemReciept()  {
         console.log('function pushToItemReciept')      
@@ -213,7 +216,6 @@
 
     function calculateAmount()  {
         console.log('function calculateAmount')
-
         document.getElementById("item-total-h2").innerHTML = itemReciept.reduce(function(prev, cur) {
         return prev + cur.itemAmount;
             }, 0);
@@ -237,19 +239,11 @@
         //localStorage.setItem('reciepts', storeRecieptRecords)
     }
 
-    var input = document.getElementById("item-number-input");    
-    input.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13)   {
-        document.getElementById('check-code-button').click();
-        document.getElementById("item-number-input").value = "";
-    }
-
     if (storeRecieptRecords.length >= 40)  {
         document.title = 'Customer Records: ' + month + ' ' +  year + ' ' + day;
         window.print();
         storeRecieptRecords = [];
     }
-});
 
 </script>
 </html>

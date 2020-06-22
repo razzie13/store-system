@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Making System</title>
+</head>
+<body>
+    <div>
+        <h2 id="store-name"></h2>
+        <h2>Sign Maker</h2>
+        <input id="item-number-input" placeholder="input code number here" onfocus="this.value = ''" onblur="this.placeholder = 'input code number here'"></input><button id="check-code-button" onclick="lookUpItemCodeForSign()">click to enter</button>
+
+    </div>
+</body>
+
+<!-- STORE DATA CONFIG FILE-->
+<script src="data/site-data-config.js"></script>
+
+<!-- CLICK TO ENTER-->
+<script src="scripts/global-click-to-enter.js"></script>
+
+<!-- FOOD PRODUCTS DATABASE -->
+<script src="data/items-meat.js"></script>
+<script src="data/items-produce.js"></script>
+
+<script>
+    let storeSignList = [];
+
+    function lookUpItemCodeForSign()  {
+    console.clear();
+    let searchInput = document.getElementById('item-number-input').value;
+    let itemFound = foodProducts.find(e => e.itemCode == searchInput) || produce.find(e => e.itemCode == searchInput);  
+
+    if (itemFound == undefined) {
+        alert('Item not on file. Inform Mallory. And get her a Two Cream Coffee from McDonalds');
+    }
+
+    if (itemFound.promo == true)  {
+        itemFound.itemPrice = itemFound.itemPromo
+    }
+
+    if (itemFound.weighedItem == true)  {
+        let weightEntered = prompt(itemFound.itemDescription + ' ' + itemFound.itemType + " are a Weighed Item. Enter Item Weight in Grams.");
+        let weight = (weightEntered * 0.001)
+        itemFound.itemPrice = (weight * itemFound.itemPrice);
+    }
+
+    storeSignList.push({itemName: itemFound.itemBrand + ' ' + itemFound.itemDescription + ' ' + itemFound.itemType, itemAmount: itemFound.itemPrice});
+    console.log(storeSignList);
+
+    for (let i = 0; i < storeSignList.length; i++)  {
+        console.log(storeSignList[i].itemName);
+    }
+    };
+</script>
+</html>
