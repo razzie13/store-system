@@ -4,12 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Making System</title>
+    <link rel="stylesheet" type="text/css" href="styles/store-system-main.css">
+    <style>
+        
+        @media screen  {
+            #signs-to-print  {
+                display: none;
+            }
+        }
+        
+        @media print and (orientation: landscape) {
+            #sign-inputs, #sign-inputted, #print-signs  {
+                display: none;
+            }
+
+            #signs-to-print  {
+                display: block;
+            }
+            
+            #signs-to-print div  {
+                max-height: 595px;
+                max-width: 842px;
+                background-color: gray;
+            }
+            #signs-to-print h3  {
+                font-size: 36pt;
+                position: absolute;
+                top: 40px;
+                left: 40px;
+            }
+
+            #signs-to-print h1  {
+                font-size: 220pt;
+                position: absolute;
+                top: 40px;
+                right: 100px;
+            }
+
+            #signs-to-print h4  {
+                font-size: 28pt;
+                right: 100px;
+                position: absolute;
+                top: 500px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div>
+    <div id="sign-inputs">
         <h2 id="store-name"></h2>
         <h2>Sign Maker</h2>
         <input id="item-number-input" placeholder="input code number here" onfocus="this.value = ''" onblur="this.placeholder = 'input code number here'"></input><button id="check-code-button" onclick="lookUpItemCodeForSign()">click to enter</button>
+    </div>
+    <div id="sign-inputted">
+        <h3>signs that have been generated:</h3>
+        <ul id="signs-in-list-to-print"></ul>
+    </div>
+    <button id="print-signs" onclick="window.print()">Print Signs</button>
+    <div id="signs-to-print">
 
     </div>
 </body>
@@ -46,12 +98,39 @@
         itemFound.itemPrice = (weight * itemFound.itemPrice);
     }
 
-    storeSignList.push({itemName: itemFound.itemBrand + ' ' + itemFound.itemDescription + ' ' + itemFound.itemType, itemAmount: itemFound.itemPrice});
+    storeSignList.push({itemName: itemFound.itemBrand + ' ' + itemFound.itemDescription + ' ' + itemFound.itemType, itemAmount: itemFound.itemPrice, uOM: itemFound.weighedItem});
     console.log(storeSignList);
 
-    for (let i = 0; i < storeSignList.length; i++)  {
+    let i;
+    let signsToBeMade = "";
+    let signsCreated = "";
+    for (i = 0; i < storeSignList.length; i++)  {
         console.log(storeSignList[i].itemName);
+        signsToBeMade += "<li id=" + [i] + ">" + storeSignList[i].itemName + "</li>"
+        document.getElementById('signs-in-list-to-print').innerHTML = signsToBeMade
+
+        signsCreated += 
+        "<div id=" + [i] + "><h3>" + storeSignList[i].itemName + "</h3><br>" + 
+            "<h1>" + storeSignList[i].itemAmount + "</h1><h4>Each</h4></div>"
+        document.getElementById('signs-to-print').innerHTML = signsCreated
     }
+    
     };
+
+    /*
+    for (i = 0; i < storeSignList.length; i++)  {
+        console.log(storeSignList[i].itemName);
+        let signListLine = document.createElement('li');
+        let signListItemName = document.createElement('h3');
+        let signListItemPrice = document.createElement('h1');
+
+        signListItemName.innerText = storeSignList[i].itemName;
+        signListItemPrice.innerText = storeSignList[i].itemPrice;
+
+        signListLine.appendChild(signListItemName);
+        document.getElementById('signs-to-print').appendChild(signListLine);
+    }
+    */
+    
 </script>
 </html>
