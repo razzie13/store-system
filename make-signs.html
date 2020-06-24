@@ -20,13 +20,10 @@
 
             #signs-to-print  {
                 display: block;
-            }
-            
-            #signs-to-print div  {
                 max-height: 595px;
                 max-width: 842px;
-                background-color: gray;
             }
+
             #signs-to-print h3  {
                 font-size: 36pt;
                 position: absolute;
@@ -47,13 +44,15 @@
                 position: absolute;
                 top: 500px;
             }
+
         }
     </style>
 </head>
 <body>
+    <div id="staff-notice"></div>
     <div id="sign-inputs">
         <h2 id="store-name"></h2>
-        <h2>Sign Maker</h2>
+        <h2>Full Page Sign Maker</h2>
         <input id="item-number-input" placeholder="input code number here" onfocus="this.value = ''" onblur="this.placeholder = 'input code number here'"></input><button id="check-code-button" onclick="lookUpItemCodeForSign()">click to enter</button>
     </div>
     <div id="sign-inputted">
@@ -68,6 +67,9 @@
 
 <!-- STORE DATA CONFIG FILE-->
 <script src="data/site-data-config.js"></script>
+
+<!-- FYI MESSAGES DISPLAYED ON SCREENS-->
+<script src="scripts/show-notices.js"></script>
 
 <!-- CLICK TO ENTER-->
 <script src="scripts/global-click-to-enter.js"></script>
@@ -110,7 +112,7 @@
         document.getElementById('signs-in-list-to-print').innerHTML = signsToBeMade
 
         signsCreated += 
-        "<div id=" + [i] + "><h3>" + storeSignList[i].itemName + "</h3><br>" + 
+        "<div class='sign' id=" + [i] + "><h3>" + storeSignList[i].itemName + "</h3><br>" + 
             "<h1>" + storeSignList[i].itemAmount + "</h1><h4>Each</h4></div>"
         document.getElementById('signs-to-print').innerHTML = signsCreated
     }
@@ -133,4 +135,5 @@
     */
     
 </script>
+
 </html>
