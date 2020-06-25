@@ -26,6 +26,7 @@ for (let i = 0; i < foodProducts.length; i++)  {
 
 <script>
     // CREATE HEADERS FROM ITEM TYPES
+    
     let newCategoryArray = [];
     for (let i = 0; i < foodProducts.length; i++)  {
         newCategoryArray.push(foodProducts[i].itemType);
@@ -34,41 +35,29 @@ for (let i = 0; i < foodProducts.length; i++)  {
     let uniqueCategoryList = [...new Set(newCategoryArray)]
     uniqueCategoryList.sort();
 
-    for (let i = 0; i < uniqueCategoryList.length; i++)  {
+    Object.keys(uniqueCategoryList).forEach(function(item) {
+        console.log(uniqueCategoryList[item]);
+        //console.log('this is irritating');
 
-        let foodItemMenu = document.getElementById('food-products-test');
-        let categoryHeader = document.createElement('h2');
-
-        categoryHeader.id = 'category-item-'+ [i];
-        categoryHeader.innerText = uniqueCategoryList[i];
-
-        foodItemMenu.appendChild(categoryHeader);
-
-    }
-
-    
-    for (let i = 0; i < uniqueCategoryList.length; i++) {
-        let uniqueProductArray = [];
         for (let i = 0; i < foodProducts.length; i++)  {
-            if (foodProducts[i].itemType == "Chicken Burgers")  {
-                uniqueProductArray.push(foodProducts[i])
-            }
-            let categoryTest = document.createElement('h4');
-            categoryTest.innerText = uniqueProductArray;
-            document.getElementById('category-item-0').appendChild(categoryTest);
-        };
-        console.log(uniqueProductArray);
-    };
-    
+            if (foodProducts[i].itemType == (uniqueCategoryList[item]))  {
+            
+            console.log(foodProducts[i].itemBrand + ' ' + foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType);
+            console.log(foodProducts[i].itemPrice);
+        }}
+        
 
-</script>
+        let h2 = document.createElement('h2');
+        let h5 = document.createElement('h5');
 
-<script>
-    for (let i = 0; i > foodProducts.length; i++)  {
-        let categoryTest = document.createElement('h4');
-        categoryTest.innerText = "testing";
-        document.getElementById('category-item-1').appendChild(categoryTest);
-    }
+        h2.innerText = uniqueCategoryList[item];
+        h5.innerText = 'dummy text';
+
+        h2.appendChild(h5);
+        document.getElementById('food-products-test').appendChild(h2);
+        
+    });
+
 </script>
 
 
@@ -118,6 +107,8 @@ for (let i = 0; i < foodProducts.length; i++)  {
     } else  {
         foodItem.appendChild(foodItemPromo)
     }
+
+    
 
     foodItem.appendChild(addToCartButton);
 
