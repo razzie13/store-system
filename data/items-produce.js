@@ -155,7 +155,7 @@ var produce = [
 {itemCode: 4585, itemDepartment: "Produce", itemBrand: "",  itemType: "",  itemDescription: "celery root", itemPerBox: null, itemPrice: null, itemPromo: null, promo: false, hst: false, weighedItem: false, itemImage: ""},
 {itemCode: 4586, itemDepartment: "Produce", itemBrand: "",  itemType: "swiss chard",  itemDescription: "green", itemPerBox: null, itemPrice: null, itemPromo: null, promo: false, hst: false, weighedItem: false, itemImage: ""},
 {itemCode: 4587, itemDepartment: "Produce", itemBrand: "",  itemType: "swiss chard",  itemDescription: "red", itemPerBox: null, itemPrice: null, itemPromo: null, promo: false, hst: false, weighedItem: false, itemImage: ""},
-{itemCode: 4593, itemDepartment: "Produce", itemBrand: "",  itemType: "",  itemDescription: "cucumbers", itemPerBox: null, itemPrice: null, itemPromo: null, promo: false, hst: false, weighedItem: false, itemImage: ""},
+{itemCode: 4593, itemDepartment: "Produce", itemBrand: "",  itemType: "",  itemDescription: "cucumbers", itemPerBox: null, itemPrice: 0.99, itemPromo: null, promo: false, hst: false, weighedItem: false, itemImage: ""},
 {itemCode: 4598, itemDepartment: "Produce", itemBrand: "",  itemType: "",  itemDescription: "daikon", itemPerBox: null, itemPrice: null, itemPromo: null, promo: false, hst: false, weighedItem: false, itemImage: ""},
 
 // 4600-4699 ------------------
@@ -206,7 +206,8 @@ var produce = [
 {itemCode: 4783, itemDepartment: "Produce", itemBrand: "",  itemType: "",  itemDescription: "chinese bittermelon", itemPerBox: null, itemPrice: null, itemPromo: null, promo: false, hst: false, weighedItem: false, itemImage: ""},
 {itemCode: 4787, itemDepartment: "Produce", itemBrand: "",  itemType: "",  itemDescription: "tindora", itemPerBox: null, itemPrice: null, itemPromo: null, promo: false, hst: false, weighedItem: false, itemImage: ""},
 {itemCode: 4789, itemDepartment: "Produce", itemBrand: "",  itemType: "",  itemDescription: "karela", itemPerBox: null, itemPrice: null, itemPromo: null, promo: false, hst: false, weighedItem: false, itemImage: ""},
-{itemCode: 4790, itemDepartment: "Produce", itemBrand: "",  itemType: "",  itemDescription: "sugar cane", itemPerBox: null, itemPrice: null, itemPromo: null, promo: false, hst: false, weighedItem: false, itemImage: ""},
+{itemCode: 4799, itemDepartment: "Produce", itemBrand: "",  itemType: "tomatoes",  itemDescription: "hot house", itemPerBox: null, itemPrice: 4.39, itemPromo: null, promo: false, hst: false, weighedItem: true, itemImage: ""},
+
 
 // 4800-4899 ------------------
 {itemCode: 4815, itemDepartment: "Produce", itemBrand: "",  itemType: "",  itemDescription: "watercress", itemPerBox: null, itemPrice: null, itemPromo: null, promo: false, hst: false, weighedItem: false, itemImage: ""},

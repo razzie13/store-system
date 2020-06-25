@@ -40,16 +40,39 @@
                 position: relative;
                 float: right;
                 margin-top: 0px;
-                
+                margin-bottom: 10px;
+                margin-left: 14px;
                 text-align: center;
                 
             }
 
-            #signs-to-print h4  {
+            .sign  {
+                border-style: solid;
+                border-width: 10px;
+                border-color: white;
+                height: 715px;
+                width: 920px;
+                box-sizing: border-box;
+            }
+
+            h1 span  {
+                font-size: 36pt;
+            }
+            h4 span  {
+                visibility: hidden;
+            }
+            #h4-ea  {
                 font-size: 28pt;
-                position: absolute;
-                left: 780px;
-                top: 500px;
+                position: relative;
+                margin-left: 812px;
+                margin-top: 500px;
+            }
+
+            #h4-lb  {
+                font-size: 28pt;
+                position: relative;
+                margin-left: 812px;
+                margin-top: 100px;
             }
 
             #signs-inputted li  {
@@ -124,7 +147,7 @@
         if (storeSignList[i].uOM == false)  {
         signsCreated += 
         "<div class='sign' id=" + [i] + "><h3>" + storeSignList[i].itemName + "</h3><br>" + 
-            "<h1>" + storeSignList[i].itemAmount + "</h1><h4>Each</h4></div>"
+            "<h1>" + storeSignList[i].itemAmount + "</h1><h4 id='h4-ea'>Each</h4></div>"
         document.getElementById('signs-to-print').innerHTML = signsCreated
         }
         if (storeSignList[i].uOM == true)  {
@@ -138,27 +161,12 @@
             }
             signsCreated += 
             "<div class='sign' id=" + [i] + "><h3>" + storeSignList[i].itemName + "</h3><br>" + 
-                "<h1>" + signPriceLB + "</h1><h4>/LB " + signPriceKG + "/KG</h4></div>"
+                "<h1>" + signPriceLB + "<span>/LB</span></h1><h4 id='h4-lb'><span>/lb | </span>" + signPriceKG + "/KG</h4></div>"
             document.getElementById('signs-to-print').innerHTML = signsCreated;
         }
     }
     
     };
-
-    /*
-    for (i = 0; i < storeSignList.length; i++)  {
-        console.log(storeSignList[i].itemName);
-        let signListLine = document.createElement('li');
-        let signListItemName = document.createElement('h3');
-        let signListItemPrice = document.createElement('h1');
-
-        signListItemName.innerText = storeSignList[i].itemName;
-        signListItemPrice.innerText = storeSignList[i].itemPrice;
-
-        signListLine.appendChild(signListItemName);
-        document.getElementById('signs-to-print').appendChild(signListLine);
-    }
-    */
     
 </script>
 
