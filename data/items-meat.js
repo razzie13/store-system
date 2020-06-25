@@ -14,4 +14,9 @@ const foodProducts = [
     // -------------- TURKEY BURGERS
     {itemCode: 999999, itemDepartment: "Meat", itemBrand: "Compliments", itemType: "Turkey Burgers", itemDescription: "Lean", itemPerBox: 6, itemPrice: 12.99, itemPromo: 10.99, promo: false, hst: false, weighedItem: false, itemImage: "images/lean-turkey-burgers.jpg"},
 
+    // -------------- BACON --------------
+    // -------------- PORK BACON
+    {itemCode: 11111, itemDepartment: "Meat", itemBrand: "Compliments", itemType: "Bacon", itemDescription: "Nat Smoked", itemPerBox: null, itemPrice: 5.49, itemPromo: 4.99, promo: true, hst: false, weighedItem: false, itemImage: "images/naturally-smoked-bacon.jpg"},
+    {itemCode: 22222, itemDepartment: "Meat", itemBrand: "Compliments", itemType: "Bacon", itemDescription: "Salt Reduced", itemPerBox: null, itemPrice: 5.49, itemPromo: 4.99, promo: true, hst: true, weighedItem: false, itemImage: "images/salt-reduced-bacon.jpg"},
+    {itemCode: 33333, itemDepartment: "Meat", itemBrand: "Compliments", itemType: "Bacon", itemDescription: "Maple Flavoured", itemPerBox: null, itemPrice: 5.49, itemPromo: 4.99, promo: true, hst: false, weighedItem: false, itemImage: "images/maple-bacon.jpg"}
 ];

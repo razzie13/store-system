@@ -75,6 +75,12 @@
                 margin-top: 100px;
             }
 
+            h5  {
+                font-size: 20pt;
+                position: relative;
+                padding-top: 70px;
+            }
+
             #signs-inputted li  {
                 text-transform: capitalize;
             }
@@ -128,12 +134,20 @@
         itemFound.itemPrice = itemFound.itemPromo
     }
 
-    //if (itemFound.itemDepartment == "Produce")  {
-    //        let countryOfOrigin = prompt("Please Enter Country of Origin and Product Grade (if applicable)");
-    //        document.getElementById('') = countryOfOrigin;
-    //    }
+    if (itemFound.itemDepartment == "Produce")  {
+            let inputtedCountryOfOrigin = prompt("Please Enter Country of Origin and Product Grade (if applicable)");
+            var countryOfOrigin = ("Product of " + inputtedCountryOfOrigin);
+            console.log(countryOfOrigin);
+            console.log('you still need to find a way to add this to the sign');
+        }
 
-    storeSignList.push({itemName: itemFound.itemBrand + ' ' + itemFound.itemDescription + ' ' + itemFound.itemType, itemAmount: itemFound.itemPrice, uOM: itemFound.weighedItem});
+    if (itemFound.itemDepartment != "Produce")  {
+        var countryOfOrigin = "";
+    }
+
+    storeSignList.push({itemName: itemFound.itemBrand + ' ' + itemFound.itemDescription + ' ' + itemFound.itemType, itemAmount: itemFound.itemPrice, uOM: itemFound.weighedItem, itemOrigin: countryOfOrigin});
+
+    
     console.log(storeSignList);
 
     let i;
@@ -146,7 +160,8 @@
 
         if (storeSignList[i].uOM == false)  {
         signsCreated += 
-        "<div class='sign' id=" + [i] + "><h3>" + storeSignList[i].itemName + "</h3><br>" + 
+        //"<div class='sign' id=" + [i] + "><h3>" + storeSignList[i].itemName + "</h3><br><h5>" + storeSignList[i].itemOrigin + "</h5>" + 
+        "<div class='sign' id=" + [i] + "><h3>" + storeSignList[i].itemName + "</h3>" + 
             "<h1>" + storeSignList[i].itemAmount + "</h1><h4 id='h4-ea'>Each</h4></div>"
         document.getElementById('signs-to-print').innerHTML = signsCreated
         }
@@ -157,7 +172,7 @@
             let signPriceKG = systemPriceKG.toFixed(2);
             if (signPriceLB < 1)  {
                 signPriceLB.slice(1);
-                console.log('this is the part you need to still fix');
+                console.log('this is the part you want to still fix');
             }
             signsCreated += 
             "<div class='sign' id=" + [i] + "><h3>" + storeSignList[i].itemName + "</h3><br>" + 
@@ -167,6 +182,8 @@
     }
     
     };
+
+    
     
 </script>
 
