@@ -8,9 +8,11 @@
     <style>
         
         @media screen  {
+            
             #signs-to-print  {
                 display: none;
             }
+        
         }
         
         @media print and (orientation: landscape) {
@@ -26,23 +28,32 @@
 
             #signs-to-print h3  {
                 font-size: 36pt;
-                position: absolute;
-                top: 40px;
-                left: 40px;
+                position: relative;
+                margin-top: 60px;
+                margin-left: 40px;
+                float: left;
+                text-transform: capitalize;
             }
 
             #signs-to-print h1  {
-                font-size: 220pt;
-                position: absolute;
-                top: 40px;
-                right: 100px;
+                font-size: 260pt;
+                position: relative;
+                float: right;
+                margin-top: 0px;
+                
+                text-align: center;
+                
             }
 
             #signs-to-print h4  {
                 font-size: 28pt;
-                right: 100px;
                 position: absolute;
+                left: 780px;
                 top: 500px;
+            }
+
+            #signs-inputted li  {
+                text-transform: capitalize;
             }
 
         }
@@ -94,11 +105,10 @@
         itemFound.itemPrice = itemFound.itemPromo
     }
 
-    if (itemFound.weighedItem == true)  {
-        let weightEntered = prompt(itemFound.itemDescription + ' ' + itemFound.itemType + " are a Weighed Item. Enter Item Weight in Grams.");
-        let weight = (weightEntered * 0.001)
-        itemFound.itemPrice = (weight * itemFound.itemPrice);
-    }
+    //if (itemFound.itemDepartment == "Produce")  {
+    //        let countryOfOrigin = prompt("Please Enter Country of Origin and Product Grade (if applicable)");
+    //        document.getElementById('') = countryOfOrigin;
+    //    }
 
     storeSignList.push({itemName: itemFound.itemBrand + ' ' + itemFound.itemDescription + ' ' + itemFound.itemType, itemAmount: itemFound.itemPrice, uOM: itemFound.weighedItem});
     console.log(storeSignList);
@@ -111,10 +121,26 @@
         signsToBeMade += "<li id=" + [i] + ">" + storeSignList[i].itemName + "</li>"
         document.getElementById('signs-in-list-to-print').innerHTML = signsToBeMade
 
+        if (storeSignList[i].uOM == false)  {
         signsCreated += 
         "<div class='sign' id=" + [i] + "><h3>" + storeSignList[i].itemName + "</h3><br>" + 
             "<h1>" + storeSignList[i].itemAmount + "</h1><h4>Each</h4></div>"
         document.getElementById('signs-to-print').innerHTML = signsCreated
+        }
+        if (storeSignList[i].uOM == true)  {
+            let systemPriceLB = (storeSignList[i].itemAmount * 0.454);
+            let signPriceLB = systemPriceLB.toFixed(2);
+            let systemPriceKG = storeSignList[i].itemAmount
+            let signPriceKG = systemPriceKG.toFixed(2);
+            if (signPriceLB < 1)  {
+                signPriceLB.slice(1);
+                console.log('this is the part you need to still fix');
+            }
+            signsCreated += 
+            "<div class='sign' id=" + [i] + "><h3>" + storeSignList[i].itemName + "</h3><br>" + 
+                "<h1>" + signPriceLB + "</h1><h4>/LB " + signPriceKG + "/KG</h4></div>"
+            document.getElementById('signs-to-print').innerHTML = signsCreated;
+        }
     }
     
     };
