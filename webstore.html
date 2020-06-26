@@ -13,11 +13,22 @@
         <div id="header-left">
             <h2 id="store-name"></h2>
         </div>
+        <div id="header-center">
+            <h4 id="search-number-of-items"></h4>
+            <input type="text" id="item-search-bar">
+            <button type="submit" id="search-site">search</button>
+        </div>
         <div id="header-right">
-            <h5 id="shopping-cart"></h5>
-            <h6 id="view-your-cart">view your cart</h6><h6 id="proceed-to-checkout">proceed to checkout</h6>
+            <h4 id="shop-by-department">Shop By Department</h4>
+            <input type="radio" id="radio-meat" label for="radio-meat">meat</label>
+            <input type="radio" id="radio-produce" label for="radio-produce">produce</label>
+            <input type="radio" id="radio-bulk" label for="radio-bulk">bulk</label>
+            <button type="submit" id="search-by-department">shop!</button>
+            
         </div>
     </header>
+
+    <div id="below-header"><span id="shopping-cart"></span> | <span id="view-your-cart">view your cart</span> | <span id="proceed-to-checkout">proceed to checkout</span></div>
 
     <div id="shopping-cart-window"></div>
 
@@ -31,6 +42,13 @@
 
 <!-- FOOD PRODUCTS DATABASE -->
 <script src="data/items-meat.js"></script>
+<script src="data/items-produce.js"></script>
+
+<script>
+    let foodProducts = [...meat, ...produce];
+    document.getElementById('search-number-of-items').innerHTML = "Search from " + foodProducts.length + " products!";
+</script>
+
 
 <script>
     let shoppingCart = [];

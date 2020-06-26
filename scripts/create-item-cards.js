@@ -7,6 +7,8 @@ for (let i = 0; i < foodProducts.length; i++)  {
     let foodItemPrice = document.createElement('h4');
     let foodItemPromo = document.createElement('h4');
 
+    let br = document.createElement('br');
+
     let addToCartButton = document.createElement('button')
 
     //------------------------------------------------------------------------------------------
@@ -38,6 +40,10 @@ for (let i = 0; i < foodProducts.length; i++)  {
     } else  {
         foodItem.appendChild(foodItemPromo)
     }
+
+    // trials ----
+
+    // end trials
 
     foodItem.appendChild(addToCartButton);
 

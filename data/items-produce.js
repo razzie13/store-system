@@ -1,5 +1,5 @@
 // updated 2020-03-02
-var produce = [
+const produce = [
 
 // 3000-3999 ------------------
 {itemCode: 3024, itemDepartment: "Produce", itemBrand: "",  itemType: "pears",  itemDescription: "rocha", itemPerBox: null, itemPrice: null, itemPromo: null, promo: false, hst: false, weighedItem: false, itemImage: ""},

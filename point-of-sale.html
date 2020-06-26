@@ -182,7 +182,7 @@
     function lookUpItemCode()  {
         console.clear();
         let searchInput = document.getElementById('item-number-input').value;
-        let itemFound = foodProducts.find(e => e.itemCode == searchInput) || produce.find(e => e.itemCode == searchInput);  
+        let itemFound = meat.find(e => e.itemCode == searchInput) || produce.find(e => e.itemCode == searchInput);  
 
         if (itemFound == undefined) {
             alert('Item not on file. Inform Mallory. And get her a Two Cream Coffee from McDonalds');

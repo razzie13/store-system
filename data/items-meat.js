@@ -1,4 +1,4 @@
-const foodProducts = [
+const meat = [
     // -------------- BURGERS --------------
     // -------------- BEEF BURGERS
     {itemCode: 111111, itemDepartment: "Meat", itemBrand: "Compliments", itemType: "Burgers", itemDescription: "Jalap Cheddar", itemPerBox: 8, itemPrice: 11.99, itemPromo: 9.99, promo: true, hst: false, weighedItem: false, itemImage: "images/jalapeno-cheddar-beef-burgers.jpg"},
