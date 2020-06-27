@@ -1,5 +1,3 @@
-
-
 // CREATE HEADERS FROM ITEM TYPES
 
 let newCategoryArray = [];
@@ -10,8 +8,21 @@ for (let i = 0; i < foodProducts.length; i++)  {
 let uniqueCategoryList = [...new Set(newCategoryArray)]
 uniqueCategoryList.sort();
 
+// ---- BUILD DROPDOWN LIST TO QUICKLY BROWSE SECTIONS
+
+//for (let i = 0; i < uniqueCategoryList; i++)  {
+//    let anchor = document.createElement('a');
+ //   anchor.textContent = (uniqueCategoryList[i]);
+
+//    anchor.setAttribute('onclick', console.log(uniqueCategoryList[i]));                        
+    
+//    document.getElementById('category-dropdown').appendChild(anchor)                    
+//}
+
+// ---- END BUILD DROPDOWN LIST TO QUICKLY BROWSE SECTIONS
+
 Object.keys(uniqueCategoryList).forEach(function(item) {
-    //console.log(uniqueCategoryList[item]);
+    //console.log(uniqueCategoryList[item])
 
     let itemCategorySection = document.createElement('div');
     let h2 = document.createElement('h2');
@@ -23,19 +34,12 @@ Object.keys(uniqueCategoryList).forEach(function(item) {
     itemCategorySection.appendChild(h2);
     document.getElementById('food-products').appendChild(itemCategorySection);
 
+    // POPULATE ITEM TYPES WITH ITEMS OF THAT TYPE
 
     for (let i = 0; i < foodProducts.length; i++)  {
 
         if (foodProducts[i].itemCategory == (uniqueCategoryList[item]))  {
-        //console.log(foodProducts[i].itemBrand + ' ' + foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType);
-        //console.log(foodProducts[i].itemPrice);
 
-        //let h5 = document.createElement('h5');
-        //h5.innerText = foodProducts[i].itemBrand + ' ' + foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType;
-        //div.appendChild(h5);
-        //
-
-        //let foodItemMenu = document.getElementById('food-products');
         let foodItemCard = document.createElement('div');
         let foodItemName = document.createElement('h3');
         let foodItemPicture = document.createElement('img');
@@ -77,20 +81,7 @@ Object.keys(uniqueCategoryList).forEach(function(item) {
         }
 
         foodItemCard.appendChild(addToCartButton);
-        //foodItemMenu.appendChild(foodItemCard);
         itemCategorySection.appendChild(foodItemCard);
         }
     }
-
-    /*
-    for (let i = 0; i < foodProducts.length; i++)  {
-        if (foodProducts[i].itemCategory == (uniqueCategoryList[item]))  {
-        console.log(foodProducts[i].itemBrand + ' ' + foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType);
-        console.log(foodProducts[i].itemPrice);
-
-        let h5 = document.createElement('h5');
-        h5.innerText = foodProducts[i].itemBrand + ' ' + foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType;
-        itemSection.appendChild(h5);
-    }}
-    */
 });

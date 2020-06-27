@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Store</title>
+    <link rel="stylesheet" type="text/css" href="styles/store-system-main.css">
+    <link rel="stylesheet" type="text/css" href="styles/webstore.css">
+</head>
+<body>
+    
+    <header>
+        <div id="header-left">
+            <h2 id="store-name"></h2>
+        </div>
+        <div id="header-center">
+            <h4 id="search-number-of-items"></h4>
+            <input type="text" id="item-search-bar">
+            <button type="submit" id="search-site">search</button>
+        </div>
+        <div id="header-right">
+            <h4 id="shop-by-department">Shop By Department</h4>
+            <input type="radio" name="shop-department" id="radio-meat" value="webstore-meat.html" label for="radio-meat">meat</label>
+            <input type="radio" name="shop-department" id="radio-produce" value="webstore-produce.html" label for="radio-produce">produce</label>
+            <input type="radio" name="shop-department" id="radio-bulk" value="webstore-bulk.html" label for="radio-bulk">bulk</label>
+            <button type="submit" id="search-by-department" onclick="location.href=document.querySelector('input[name=shop-department]:checked').value;">shop!</button>
+            
+        </div>
+    </header>
+
+    <div id="below-header"><div id="category-dropdown"></div><span id="shopping-cart"></span> | <span id="view-your-cart">view your cart</span> | <span id="proceed-to-checkout">proceed to checkout</span></div>
+
+    <div id="shopping-cart-window"></div>
+
+    <main id="products">
+        <div id="food-products" class="food-items"></div>
+    </main>
+
+    <div id="item-code-test">
+        <h3 id="item-name"></h3>
+    </div>
+
+<!-- FOOD PRODUCTS DATABASE -->
+<script src="data/items-meat.js"></script>
+<script src="data/items-produce.js"></script>
+
+<script>
+    let allFoodProducts = [...meat, ...produce]
+    let foodProducts = produce;
+    document.getElementById('search-number-of-items').innerHTML = "Search from " + allFoodProducts.length + " products!";
+</script>
+
+
+<script>
+    let shoppingCart = [];
+    document.getElementById('shopping-cart').innerText = 'Items in your cart: ' + shoppingCart.length;
+    
+</script>
+
+<script>
+    function globalProductSearch()  {
+
+    let globalProductSearchInput = document.getElementById('item-search-bar').value;
+    let itemFound = meat.find(e => e.itemDescription == globalProductSearchInput) || produce.find(e => e.itemDescription == globalProductSearchInput);  
+
+    console.log(itemFound);
+    /*
+    if (itemFound == undefined) {
+        alert('Item not on file. Inform Mallory. And get her a Two Cream Coffee from McDonalds');
+    }
+
+    if (itemFound.promo == true)  {
+        itemFound.itemPrice = itemFound.itemPromo
+    }
+
+    if (itemFound.weighedItem == true)  {
+        let weightEntered = prompt(itemFound.itemDescription + ' ' + itemFound.itemType + " are a Weighed Item. Enter Item Weight in Grams.");
+        let weight = (weightEntered * 0.001)
+        itemFound.itemPrice = (weight * itemFound.itemPrice);
+    }
+
+    itemReciept.push({itemName: itemFound.itemBrand + ' ' + itemFound.itemDescription + ' ' + itemFound.itemType, itemAmount: itemFound.itemPrice});
+    console.log(itemReciept);
+    pushToItemReciept();
+    */
+}
+</script>
+
+
+<!-- STORE DATA CONFIG FILE-->
+<script src="data/site-data-config.js"></script>
+
+<!-- CREATE ITEM CARDS ON WEBPAGE-->
+<script src="scripts/create-item-cards.js"></script>
+
+<!-- ADD ITEMS TO CART -->
+<script src="scripts/add-to-cart.js"></script>
+
+<!-- VIEW CART CONTENTS -->
+<script src="scripts/view-cart-contents.js"></script>
+
+<!-- HIDE CART CONTENTS -->   
+<script src="scripts/hide-cart-contents.js"></script>
+
+<!-- EVENT LISTENERS -->  
+<script>
+    document.getElementById('view-your-cart').addEventListener('click', viewCartContents);
+
+    
+</script>
+
+</body>
+
+</html>

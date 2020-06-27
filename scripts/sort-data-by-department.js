@@ -1,5 +1,23 @@
 function sortDataByDepartment()  {
 
+    let selectedDepartment =  document.querySelector("input[name=shop-department]:checked").value;
+
+    if (selectedDepartment == "meat")  {
+        console.log('meat works')
+    }
+
+    if (selectedDepartment == "produce")  {
+        console.log('produce works')
+    }
+
+    if (selectedDepartment == "bulk")  {
+        console.log('bulk works')
+    }
+}
+
+/*
+function sortDataByDepartment()  {
+
     let selectedDepartment =  document.querySelector("input[name=shop-department]:checked").value
     let browseByDepartmentValue = document.createElement('div');
 
@@ -65,3 +83,4 @@ function sortDataByDepartment()  {
             //console.log(foodProducts[i].itemPrice);
     }
 }
+*/
