@@ -15,11 +15,14 @@
 <script src="data/items-meat.js"></script>
 
 <script>
+
+    let foodProducts = [...meat, ...produce];
+
     // CREATE HEADERS FROM ITEM TYPES
     
     let newCategoryArray = [];
     for (let i = 0; i < foodProducts.length; i++)  {
-        newCategoryArray.push(foodProducts[i].itemType);
+        newCategoryArray.push(foodProducts[i].itemCategory);
     }
 
     let uniqueCategoryList = [...new Set(newCategoryArray)]
@@ -27,25 +30,26 @@
 
     Object.keys(uniqueCategoryList).forEach(function(item) {
         console.log(uniqueCategoryList[item]);
-        //console.log('this is irritating');
+
+        let div = document.createElement('div');
+        let h2 = document.createElement('h2');
+
+        div.id = uniqueCategoryList[item];
+        h2.innerText = uniqueCategoryList[item];
+        
+        div.appendChild(h2)
+        document.getElementById('food-products-test').appendChild(div);
 
         for (let i = 0; i < foodProducts.length; i++)  {
-            if (foodProducts[i].itemType == (uniqueCategoryList[item]))  {
-            
+            if (foodProducts[i].itemCategory == (uniqueCategoryList[item]))  {
             console.log(foodProducts[i].itemBrand + ' ' + foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType);
             console.log(foodProducts[i].itemPrice);
+
+            let h5 = document.createElement('h5');
+            h5.innerText = foodProducts[i].itemBrand + ' ' + foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType;
+            div.appendChild(h5);
         }}
-        
 
-        let h2 = document.createElement('h2');
-        let h5 = document.createElement('h5');
-
-        h2.innerText = uniqueCategoryList[item];
-        h5.innerText = 'dummy text';
-
-        h2.appendChild(h5);
-        document.getElementById('food-products-test').appendChild(h2);
-        
     });
 
 </script>
