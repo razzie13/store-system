@@ -26,12 +26,17 @@ Object.keys(uniqueCategoryList).forEach(function(item) {
 
     let itemCategorySection = document.createElement('div');
     let h2 = document.createElement('h2');
+    let anchor = document.createElement('a');
 
     itemCategorySection.id = uniqueCategoryList[item];
     itemCategorySection.className = 'food-category-section';
+
     h2.innerText = uniqueCategoryList[item];
+
+    anchor.href = "#" + uniqueCategoryList[item];
     
     itemCategorySection.appendChild(h2);
+    itemCategorySection.appendChild(anchor);
     document.getElementById('food-products').appendChild(itemCategorySection);
 
     // POPULATE ITEM TYPES WITH ITEMS OF THAT TYPE
@@ -61,6 +66,10 @@ Object.keys(uniqueCategoryList).forEach(function(item) {
         foodItemName.innerText = foodProducts[i].itemBrand + ' ' +  foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType;
         foodItemPrice.innerText = foodProducts[i].itemPrice;
 
+        if (foodProducts[i].weighedItem == true)  {
+            foodItemPrice.innerText = (foodProducts[i].itemPrice * 0.454).toFixed(2) + '/lb';
+        }
+
         foodItemPromo.innerHTML = 'sale ' + foodProducts[i].itemPromo + '<span>  reg ' + foodProducts[i].itemPrice + '</span>';
         foodItemPromo.className = 'food-item-promo'
 
@@ -79,6 +88,8 @@ Object.keys(uniqueCategoryList).forEach(function(item) {
         } else  {
             foodItemCard.appendChild(foodItemPromo)
         }
+
+        
 
         foodItemCard.appendChild(addToCartButton);
         itemCategorySection.appendChild(foodItemCard);
