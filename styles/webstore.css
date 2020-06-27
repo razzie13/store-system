@@ -109,11 +109,28 @@ button:hover  {
 }
     
 
+/*
 .food-items  {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
+}
+*/
+
+.food-items h2  {
+    padding-left: 30px;
+    text-transform: capitalize;
+    width: 100%;
+}
+
+.food-category-section  {
+    background-color: rgb(194, 193, 193);
+    margin: 10px;
+    border-style: hidden;
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
 }
 .food-item-section  {
     background-color: white;
@@ -123,6 +140,10 @@ button:hover  {
     margin: 24px;
     border-style: hidden;
     border-radius: 15px;
+}
+
+.food-item-section h3  {
+    text-transform: capitalize;
 }
 
 .food-item-section button  {

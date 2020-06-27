@@ -1,51 +1,96 @@
+
+
+// CREATE HEADERS FROM ITEM TYPES
+
+let newCategoryArray = [];
 for (let i = 0; i < foodProducts.length; i++)  {
+    newCategoryArray.push(foodProducts[i].itemCategory);
+}
 
-    let foodItemMenu = document.getElementById('food-products');
-    let foodItem = document.createElement('div');
-    let foodItemName = document.createElement('h3');
-    let foodItemPicture = document.createElement('img');
-    let foodItemPrice = document.createElement('h4');
-    let foodItemPromo = document.createElement('h4');
+let uniqueCategoryList = [...new Set(newCategoryArray)]
+uniqueCategoryList.sort();
 
-    let br = document.createElement('br');
+Object.keys(uniqueCategoryList).forEach(function(item) {
+    //console.log(uniqueCategoryList[item]);
 
-    let addToCartButton = document.createElement('button')
+    let itemCategorySection = document.createElement('div');
+    let h2 = document.createElement('h2');
 
-    //------------------------------------------------------------------------------------------
+    itemCategorySection.id = uniqueCategoryList[item];
+    itemCategorySection.className = 'food-category-section';
+    h2.innerText = uniqueCategoryList[item];
     
-    foodItem.id = 'food-item-' + i;
-    foodItem.className = 'food-item-section'
+    itemCategorySection.appendChild(h2);
+    document.getElementById('food-products').appendChild(itemCategorySection);
 
-    foodItemPicture.src = foodProducts[i].itemImage;
-    foodItemPicture.width = 200;
 
-    foodItemName.innerText = foodProducts[i].itemBrand + ' ' +  foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType;
-    foodItemPrice.innerText = foodProducts[i].itemPrice;
+    for (let i = 0; i < foodProducts.length; i++)  {
 
-    foodItemPromo.innerHTML = 'sale ' + foodProducts[i].itemPromo + '<span>  reg ' + foodProducts[i].itemPrice + '</span>';
-    foodItemPromo.className = 'food-item-promo'
+        if (foodProducts[i].itemCategory == (uniqueCategoryList[item]))  {
+        //console.log(foodProducts[i].itemBrand + ' ' + foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType);
+        //console.log(foodProducts[i].itemPrice);
 
-    addToCartButton.innerText = 'add to cart';
-    //addToCartButton.setAttribute('onclick', 'addToCart(foodProducts[i])'); -- doesn't work
-    //addToCartButton.setAttribute('onclick', 'addToCart()'); -- works but doesn't pass an argument
-    addToCartButton.setAttribute('onclick', 'addToCart(' + foodProducts[i] + ')');
-    //addToCartButton.setAttribute('onclick', 'addToCart(' + foodProducts[i].itemCode + ')'); -- works but doesn't pass all info. Works fine to print an order sheet!
-    
-    foodItem.appendChild(foodItemPicture);
-    foodItem.appendChild(foodItemName);
-    
-    if (foodProducts[i].promo == false)  {
-        foodItem.appendChild(foodItemPrice);
+        //let h5 = document.createElement('h5');
+        //h5.innerText = foodProducts[i].itemBrand + ' ' + foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType;
+        //div.appendChild(h5);
+        //
 
-    } else  {
-        foodItem.appendChild(foodItemPromo)
+        //let foodItemMenu = document.getElementById('food-products');
+        let foodItemCard = document.createElement('div');
+        let foodItemName = document.createElement('h3');
+        let foodItemPicture = document.createElement('img');
+        let foodItemPrice = document.createElement('h4');
+        let foodItemPromo = document.createElement('h4');
+
+        let br = document.createElement('br');
+
+        let addToCartButton = document.createElement('button')
+
+        //------------------------------------------------------------------------------------------
+
+        foodItemCard.id = 'food-item-' + i;
+        foodItemCard.className = 'food-item-section'
+
+        foodItemPicture.src = foodProducts[i].itemImage;
+        foodItemPicture.width = 200;
+
+        foodItemName.innerText = foodProducts[i].itemBrand + ' ' +  foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType;
+        foodItemPrice.innerText = foodProducts[i].itemPrice;
+
+        foodItemPromo.innerHTML = 'sale ' + foodProducts[i].itemPromo + '<span>  reg ' + foodProducts[i].itemPrice + '</span>';
+        foodItemPromo.className = 'food-item-promo'
+
+        addToCartButton.innerText = 'add to cart';
+        //addToCartButton.setAttribute('onclick', 'addToCart(foodProducts[i])'); -- doesn't work
+        //addToCartButton.setAttribute('onclick', 'addToCart()'); -- works but doesn't pass an argument
+        addToCartButton.setAttribute('onclick', 'addToCart(' + foodProducts[i] + ')');
+        //addToCartButton.setAttribute('onclick', 'addToCart(' + foodProducts[i].itemCode + ')'); -- works but doesn't pass all info. Works fine to print an order sheet!
+
+        foodItemCard.appendChild(foodItemPicture);
+        foodItemCard.appendChild(foodItemName);
+
+        if (foodProducts[i].promo == false)  {
+            foodItemCard.appendChild(foodItemPrice);
+
+        } else  {
+            foodItemCard.appendChild(foodItemPromo)
+        }
+
+        foodItemCard.appendChild(addToCartButton);
+        //foodItemMenu.appendChild(foodItemCard);
+        itemCategorySection.appendChild(foodItemCard);
+        }
     }
 
-    // trials ----
+    /*
+    for (let i = 0; i < foodProducts.length; i++)  {
+        if (foodProducts[i].itemCategory == (uniqueCategoryList[item]))  {
+        console.log(foodProducts[i].itemBrand + ' ' + foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType);
+        console.log(foodProducts[i].itemPrice);
 
-    // end trials
-
-    foodItem.appendChild(addToCartButton);
-
-    document.getElementById('food-products').appendChild(foodItem);
-}
+        let h5 = document.createElement('h5');
+        h5.innerText = foodProducts[i].itemBrand + ' ' + foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType;
+        itemSection.appendChild(h5);
+    }}
+    */
+});
