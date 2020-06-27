@@ -8,18 +8,7 @@ for (let i = 0; i < foodProducts.length; i++)  {
 let uniqueCategoryList = [...new Set(newCategoryArray)]
 uniqueCategoryList.sort();
 
-// ---- BUILD DROPDOWN LIST TO QUICKLY BROWSE SECTIONS
 
-//for (let i = 0; i < uniqueCategoryList; i++)  {
-//    let anchor = document.createElement('a');
- //   anchor.textContent = (uniqueCategoryList[i]);
-
-//    anchor.setAttribute('onclick', console.log(uniqueCategoryList[i]));                        
-    
-//    document.getElementById('category-dropdown').appendChild(anchor)                    
-//}
-
-// ---- END BUILD DROPDOWN LIST TO QUICKLY BROWSE SECTIONS
 
 Object.keys(uniqueCategoryList).forEach(function(item) {
     //console.log(uniqueCategoryList[item])
@@ -27,6 +16,7 @@ Object.keys(uniqueCategoryList).forEach(function(item) {
     let itemCategorySection = document.createElement('div');
     let h2 = document.createElement('h2');
     let anchor = document.createElement('a');
+    let itemCategorySectionDropDownMenu = document.createElement('div');
 
     itemCategorySection.id = uniqueCategoryList[item];
     itemCategorySection.className = 'food-category-section';
@@ -37,6 +27,10 @@ Object.keys(uniqueCategoryList).forEach(function(item) {
     
     itemCategorySection.appendChild(h2);
     itemCategorySection.appendChild(anchor);
+
+    itemCategorySectionDropDownMenu.id = uniqueCategoryList[item] + '-section-dropdown';
+    itemCategorySectionDropDownMenu.className = 'category-bottom-dropdown'
+
     document.getElementById('food-products').appendChild(itemCategorySection);
 
     // POPULATE ITEM TYPES WITH ITEMS OF THAT TYPE
@@ -61,6 +55,9 @@ Object.keys(uniqueCategoryList).forEach(function(item) {
         foodItemCard.className = 'food-item-section'
 
         foodItemPicture.src = foodProducts[i].itemImage;
+        if (foodProducts[i].itemImage == "images/produce/")  {
+            foodItemPicture.src = "images/produce/z-image-not-available.jpg";
+        }
         foodItemPicture.width = 200;
 
         foodItemName.innerText = foodProducts[i].itemBrand + ' ' +  foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType;
@@ -95,4 +92,6 @@ Object.keys(uniqueCategoryList).forEach(function(item) {
         itemCategorySection.appendChild(foodItemCard);
         }
     }
+
+    itemCategorySection.appendChild(itemCategorySectionDropDownMenu);
 });

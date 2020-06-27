@@ -6,6 +6,7 @@ body  {
 
 header  {
     width: 100%;
+    /*max-width: 1730px;*/
     background-color: rgb(128, 128, 128);
     color: white;
     font-size: 32px;
@@ -16,7 +17,7 @@ header  {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: center;
     position: relative;
 }
 
@@ -24,14 +25,17 @@ header  {
     flex-grow: 1;
     padding-left: 30px;
     margin-top: -4px;
+    max-width: 432.5px;
 }
 #header-center  {
     flex-grow: 2;
+    max-width: 865px;
 }
 #header-right  {
     flex-grow: 1;
     font-size: 18px;
     margin-top: -4px;
+    max-width: 432.5px;
 }
 
 #search-number-of-items  {
@@ -109,14 +113,12 @@ button:hover  {
 }
     
 
-/*
+
 .food-items  {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: flex-start;
+    display: block;
+    margin: 0 auto;
 }
-*/
+
 
 .food-items h2  {
     padding-left: 30px;
@@ -131,6 +133,7 @@ button:hover  {
     border-radius: 15px;
     display: flex;
     flex-wrap: wrap;
+    max-width: 1730px;
 }
 .food-item-section  {
     background-color: white;
@@ -192,4 +195,16 @@ button:hover  {
     position: absolute;
     right: 20px;
     top: 20px;
+}
+
+#food-products > #organic  {
+    background-color: rgb(134, 230, 134);
+}
+
+#food-products > #south  {
+    background-color: rgb(173, 132, 248);
+}
+
+#food-products > #tropical  {
+    background-color: rgb(220, 230, 134);
 }

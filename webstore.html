@@ -29,7 +29,7 @@
         </div>
     </header>
 
-    <div id="below-header"><span id="shopping-cart"></span> | <span id="view-your-cart">view your cart</span> | <span id="proceed-to-checkout">proceed to checkout</span></div>
+    <div id="below-header"><div id="category-dropdown"></div><span id="shopping-cart"></span> | <span id="view-your-cart">view your cart</span> | <span id="proceed-to-checkout">proceed to checkout</span></div>
 
     <div id="shopping-cart-window"></div>
 
@@ -57,97 +57,20 @@
     
 </script>
 
-<!--
-<script>
-    function sortDataByDepartment()  {
-
-        let selectedDepartment =  document.querySelector("input[name=shop-department]:checked").value
-        let browseByDepartmentValue = document.createElement('div');
-
-        browseByDepartmentValue.className = 'food-category-section';
-        browseByDepartmentValue.id = 'browse-' + document.querySelector("input[name=shop-department]:checked").value;
-        
-        for (let i = 0; i < foodProducts.length; i++)  {
-            if (foodProducts[i].itemDepartment == selectedDepartment)  {
-
-                
-
-                let foodItemCard = document.createElement('div');
-                let foodItemName = document.createElement('h3');
-                let foodItemPicture = document.createElement('img');
-                let foodItemPrice = document.createElement('h4');
-                let foodItemPromo = document.createElement('h4');
-
-                let br = document.createElement('br');
-
-                let addToCartButton = document.createElement('button')
-
-                //------------------------------------------------------------------------------------------
-
-                
-
-                foodItemCard.id = 'food-item-' + i;
-                foodItemCard.className = 'food-item-section'
-
-                foodItemPicture.src = foodProducts[i].itemImage;
-                foodItemPicture.width = 200;
-
-                foodItemName.innerText = foodProducts[i].itemBrand + ' ' +  foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType;
-                foodItemPrice.innerText = foodProducts[i].itemPrice;
-
-                foodItemPromo.innerHTML = 'sale ' + foodProducts[i].itemPromo + '<span>  reg ' + foodProducts[i].itemPrice + '</span>';
-                foodItemPromo.className = 'food-item-promo'
-
-                addToCartButton.innerText = 'add to cart';
-                //addToCartButton.setAttribute('onclick', 'addToCart(foodProducts[i])'); -- doesn't work
-                //addToCartButton.setAttribute('onclick', 'addToCart()'); -- works but doesn't pass an argument
-                addToCartButton.setAttribute('onclick', 'addToCart(' + foodProducts[i] + ')');
-                //addToCartButton.setAttribute('onclick', 'addToCart(' + foodProducts[i].itemCode + ')'); -- works but doesn't pass all info. Works fine to print an order sheet!
-
-                foodItemCard.appendChild(foodItemPicture);
-                foodItemCard.appendChild(foodItemName);
-
-                if (foodProducts[i].promo == false)  {
-                    foodItemCard.appendChild(foodItemPrice);
-
-                } else  {
-                    foodItemCard.appendChild(foodItemPromo)
-                }
-
-                foodItemCard.appendChild(addToCartButton);
-                //foodItemMenu.appendChild(foodItemCard);
-                browseByDepartmentValue.appendChild(foodItemCard)
-                //document.getElementById('food-products').appendChild(browseByDepartmentValue);
-                }
-
-                
-                document.getElementById('food-products').appendChild(browseByDepartmentValue);
-                //console.log(foodProducts[i].itemBrand + ' ' + foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType);
-                //console.log(foodProducts[i].itemPrice);
-        }}
-        
-    
-</script>
--->
-
-
 <!-- STORE DATA CONFIG FILE-->
 <script src="data/site-data-config.js"></script>
 
 <!-- CREATE ITEM CARDS ON WEBPAGE-->
-<script src="scripts/create-item-cards.js"></script>
-
-<!-- SORT DATA BY DEPARTMENT-->
-<script src="scripts/sort-data-by-department.js"></script>
+<script src="scripts/webstore-create-item-cards.js"></script>
 
 <!-- ADD ITEMS TO CART -->
-<script src="scripts/add-to-cart.js"></script>
+<script src="scripts/webstore-add-to-cart.js"></script>
 
 <!-- VIEW CART CONTENTS -->
-<script src="scripts/view-cart-contents.js"></script>
+<script src="scripts/webstore-view-cart-contents.js"></script>
 
 <!-- HIDE CART CONTENTS -->   
-<script src="scripts/hide-cart-contents.js"></script>
+<script src="scripts/webstore-hide-cart-contents.js"></script>
 
 <!-- EVENT LISTENERS -->  
 <script>
