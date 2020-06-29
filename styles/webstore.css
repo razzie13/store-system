@@ -114,9 +114,9 @@ button:hover  {
     
 
 
-.food-items  {
-    display: block;
-    margin: 0 auto;
+#products {
+    display: flex;
+    justify-content: center;
 }
 
 

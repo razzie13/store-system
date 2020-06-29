@@ -71,11 +71,9 @@ Object.keys(uniqueCategoryList).forEach(function(item) {
         foodItemPromo.className = 'food-item-promo'
 
         addToCartButton.innerText = 'add to cart';
-        //addToCartButton.setAttribute('onclick', 'addToCart(foodProducts[i])'); -- doesn't work
-        //addToCartButton.setAttribute('onclick', 'addToCart()'); -- works but doesn't pass an argument
-        addToCartButton.setAttribute('onclick', 'addToCart(' + foodProducts[i] + ')');
-        //addToCartButton.setAttribute('onclick', 'addToCart(' + foodProducts[i].itemCode + ')'); -- works but doesn't pass all info. Works fine to print an order sheet!
+        addToCartButton.id = foodProducts[i].itemCode;
 
+        addToCartButton.setAttribute('onclick', 'addToCart(' + foodProducts[i].itemCode + ')'); // add more arguments to this or add a lookup for the codes to the cart
         foodItemCard.appendChild(foodItemPicture);
         foodItemCard.appendChild(foodItemName);
 
