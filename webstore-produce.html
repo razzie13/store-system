@@ -44,47 +44,36 @@
 <script src="data/items-meat.js"></script>
 <script src="data/items-produce.js"></script>
 
+<!-- CONCATENATE FOOD DATABASES -->
+<script src="scripts/items-all.js"></script>
 
 <script>
-    let allFoodProducts = [...meat, ...produce]
     let foodProducts = produce;
-    document.getElementById('search-number-of-items').innerHTML = "Search from " + allFoodProducts.length + " products!";
-</script>
-
-
-<script>
     let shoppingCart = [];
     document.getElementById('shopping-cart').innerText = 'Items in your cart: ' + shoppingCart.length;
-    
 </script>
 
 <script>
     function globalProductSearch()  {
+    console.log('function globalProductSearch')
 
     let globalProductSearchInput = document.getElementById('item-search-bar').value;
-    let itemFound = meat.find(e => e.itemDescription == globalProductSearchInput) || produce.find(e => e.itemDescription == globalProductSearchInput);  
-
-    console.log(itemFound);
-    /*
-    if (itemFound == undefined) {
-        alert('Item not on file. Inform Mallory. And get her a Two Cream Coffee from McDonalds');
+    let itemFound = allFoodProducts.find(e => (e.itemDescription == globalProductSearchInput) || (e.itemCategory == globalProductSearchInput)); 
+    
+    if (itemFound == undefined)  {
+        console.log ('item not found')
+    }  else  {
+        console.log (itemFound)
+        let searchResults = [];
+        for (let i = 0; i > allFoodProducts.length; i++)  {
+            if (itemFound == 'burgers')  {
+                searchResults.push(allFoodProducts[i]);
+            }
+        }
+        console.log(searchResults)
     }
-
-    if (itemFound.promo == true)  {
-        itemFound.itemPrice = itemFound.itemPromo
-    }
-
-    if (itemFound.weighedItem == true)  {
-        let weightEntered = prompt(itemFound.itemDescription + ' ' + itemFound.itemType + " are a Weighed Item. Enter Item Weight in Grams.");
-        let weight = (weightEntered * 0.001)
-        itemFound.itemPrice = (weight * itemFound.itemPrice);
-    }
-
-    itemReciept.push({itemName: itemFound.itemBrand + ' ' + itemFound.itemDescription + ' ' + itemFound.itemType, itemAmount: itemFound.itemPrice});
-    console.log(itemReciept);
-    pushToItemReciept();
-    */
 }
+
 </script>
 
 
@@ -110,7 +99,7 @@
 <script>
     document.getElementById('view-your-cart').addEventListener('click', viewCartContents);
 
-    
+    document.getElementById('search-site').addEventListener('click', globalProductSearch);
 </script>
 
 </body>

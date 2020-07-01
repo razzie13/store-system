@@ -22,8 +22,10 @@
 
             #signs-to-print  {
                 display: block;
-                max-height: 595px;
-                max-width: 842px;
+                /*position: relative;*/
+                max-height: 737.3px;
+                max-width: 942px;
+            
             }
 
             #signs-to-print h3  {
@@ -50,31 +52,40 @@
                 border-style: solid;
                 border-width: 10px;
                 border-color: white;
-                height: 715px;
-                width: 920px;
+                position: relative;
+                height: 737.3px;
+                width: 942px;
+                
                 box-sizing: border-box;
+
+
             }
 
             h1 span  {
                 font-size: 36pt;
             }
+
+            h3 span  {
+                font-size: 16px;
+            }
+
             h4 span  {
                 visibility: hidden;
             }
-            #h4-ea  {
+            #h4-ea, #h4-lb  {
                 font-size: 28pt;
                 position: relative;
                 margin-left: 812px;
-                margin-top: 500px;
+                margin-top: 530px;
             }
-
+/*
             #h4-lb  {
                 font-size: 28pt;
-                position: relative;
+                position: absolute;
                 margin-left: 812px;
                 margin-top: 100px;
             }
-
+*/
             h5  {
                 font-size: 20pt;
                 position: relative;
@@ -167,7 +178,7 @@
         if (storeSignList[i].uOM == false)  {
         signsCreated += 
         //"<div class='sign' id=" + [i] + "><h3>" + storeSignList[i].itemName + "</h3><br><h5>" + storeSignList[i].itemOrigin + "</h5>" + 
-        "<div class='sign' id=" + [i] + "><h3>" + storeSignList[i].itemName + "</h3>" + 
+        "<div class='sign' id=" + [i] + "><h3>" + storeSignList[i].itemName + " " + "<span>" + storeSignList[i].itemOrigin + "</span></h3>" +
             "<h1>" + storeSignList[i].itemAmount + "</h1><h4 id='h4-ea'>Each</h4></div>"
         document.getElementById('signs-to-print').innerHTML = signsCreated
         }
@@ -181,14 +192,13 @@
                 console.log('this is the part you want to still fix');
             }
             signsCreated += 
-            "<div class='sign' id=" + [i] + "><h3>" + storeSignList[i].itemName + "</h3><br>" + 
+            "<div class='sign' id=" + [i] + "><h3>" + storeSignList[i].itemName + " " + "<span>" + storeSignList[i].itemOrigin + "</h3><br>" + 
                 "<h1>" + signPriceLB + "<span>/LB</span></h1><h4 id='h4-lb'><span>/lb | </span>" + signPriceKG + "/KG</h4></div>"
             document.getElementById('signs-to-print').innerHTML = signsCreated;
         }
     }
     
     };
-
     
     
 </script>

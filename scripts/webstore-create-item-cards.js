@@ -8,10 +8,7 @@ for (let i = 0; i < foodProducts.length; i++)  {
 let uniqueCategoryList = [...new Set(newCategoryArray)]
 uniqueCategoryList.sort();
 
-
-
 Object.keys(uniqueCategoryList).forEach(function(item) {
-    //console.log(uniqueCategoryList[item])
 
     let itemCategorySection = document.createElement('div');
     let h2 = document.createElement('h2');
