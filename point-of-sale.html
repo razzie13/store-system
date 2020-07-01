@@ -176,108 +176,34 @@
 <script src="data/items-meat.js"></script>
 <script src="data/items-produce.js"></script>
 
+<script>
+    let itemReciept = []; 
+    let storeRecieptRecords = [];
+</script>
+
 <!-- CODE NEEDED TO CREATE RECIEPT NUMBERS USING CURRENT DATE AND TIME -->
 <script src="scripts/create-date.js"></script>
 
+<!-- LOOK UP ITEM CODE -->
+<script src="scripts/pointofsale-lookupitemcode.js"></script>
+
+<!-- PUSH ITEM TO RECIEPT -->
+<script src="scripts/pointofsale-pushtoitemreciept.js"></script>
+
+<!-- CALCULATE AMOUNT -->
+<script src="scripts/pointofsale-calculateamount.js"></script>
+
+<!-- REMOVE LIST ARRAY ELEMENT FOR ITEM VOIDING -->
+<script src="scripts/pointofsale-removelistarrayelement.js"></script>
+
+<!-- COMPLETE TRANSACTION-->
+<script src="scripts/pointofsale-completetransaction.js"></script>
+
 <script>
-
-
-    let itemReciept = []; 
-    let storeRecieptRecords = [];
-
-    function lookUpItemCode()  {
-        console.clear();
-        let searchInput = document.getElementById('item-number-input').value;
-        let itemTaxes;
-        let itemFound = meat.find(e => e.itemCode == searchInput) || produce.find(e => e.itemCode == searchInput);  
-
-        if (itemFound == undefined) {
-            alert('Item not on file. Inform Mallory. And get her a Two Cream Coffee from McDonalds');
-        }
-
-        if (itemFound.promo == true)  {
-            itemFound.itemPrice = itemFound.itemPromo
-        }
-
-        if (itemFound.weighedItem == true)  {
-            let weightEntered = prompt(itemFound.itemDescription + ' ' + itemFound.itemType + " are a Weighed Item. Enter Item Weight in Grams.");
-            let weight = (weightEntered * 0.001)           
-            itemFound.itemPrice = (weight * itemFound.itemPrice) // works
-            //itemFound.itemDescription = (itemFound.itemType + '<span class="small-span">(' + weightEntered + ' g)</span>')
-        }
-
-        if (itemFound.hst == true)  {
-            itemTaxes = (itemFound.itemPrice * 0.13)
-        } else  {
-            itemTaxes = 0
-        }
-
-        let itemAmountString = itemFound.itemPrice;
-        let itemAmountToString = itemAmountString.toFixed(2)
-        itemReciept.push({itemName: itemFound.itemBrand + ' ' + itemFound.itemDescription + ' ' + itemFound.itemType, itemAmount: itemFound.itemPrice, itemAmountDisplay: itemAmountToString, itemHST: itemTaxes});
-        console.log(itemReciept);
-        pushToItemReciept();
-    }
-
-    function pushToItemReciept()  {
-        console.log('function pushToItemReciept')      
-        let i;
-        let recieptLineItem = "";
-        for (i = 0; i < itemReciept.length; i++)  {
-            //recieptLineItem += '<div id = ' + [i] + '><h2>' + itemReciept[i].itemName + ' <span>' +  itemReciept[i].itemAmount + '</span></h2><button id=' + [i] + ' onclick=removeListArrayElement(this.id)>X</button></div><br>';
-            recieptLineItem += '<div id = ' + [i] + '><h2>' + itemReciept[i].itemName + ' <span>' +  itemReciept[i].itemAmountDisplay + '</span></h2><button id=' + [i] + ' onclick=removeListArrayElement(this.id)>X</button></div><br>';
-
-            document.getElementById('item-reciept').innerHTML = recieptLineItem;            
-        }
-        calculateAmount();
-    }
-
-    function calculateAmount()  {
-        console.log('function calculateAmount')
-        let recieptSubTotal = itemReciept.reduce(function(prev, cur) {return prev + cur.itemAmount;}, 0);
-        let recieptSubTotalToString = recieptSubTotal.toFixed(2)
-        document.getElementById('item-subtotal-h2').innerHTML = recieptSubTotalToString;
-        calculateTaxes();
-        calculateTotalAmount()
-    }
-
-    function calculateTaxes()  {
-        console.log('function calculateTaxes')
-        let recieptTaxes = itemReciept.reduce(function(prev, cur) {return prev + cur.itemHST;}, 0);
-        let recieptTaxesToString = recieptTaxes.toFixed(2)
-        document.getElementById('item-taxes-h2').innerHTML = recieptTaxesToString;
-    }
-
-    function calculateTotalAmount()  {
-        console.log('function calculateTotalAmount')
-        let recieptTotal = itemReciept.reduce(function(prev, cur) {return prev + (cur.itemAmount + cur.itemHST);}, 0);
-        let recieptTotalToString = recieptTotal.toFixed(2)
-        document.getElementById('item-total-h2').innerHTML = recieptTotalToString;
-    }
-
-    function removeListArrayElement(clicked)  {
-        itemReciept.splice(clicked , 1);  
-        pushToItemReciept()
-    }
-
-    function completeTransaction()  {
-        console.log('function completeTransaction')
-        document.getElementById("reciept-number").innerHTML = 'Your Reciept Number: ' + year + month + day + hour + minute + second;
-        storeRecieptRecords.push({recieptNumber: year + month + day + hour + minute + second, itemsPurchased: itemReciept});
-        window.print();
-        //itemReciept = []; 
-        document.getElementById("reciept-number").innerHTML = '';
-        console.log(itemReciept);
-        console.log(storeRecieptRecords);
-        //localStorage.removeItem('reciepts')
-        //localStorage.setItem('reciepts', storeRecieptRecords)
-    }
-
     if (storeRecieptRecords.length >= 40)  {
         document.title = 'Customer Records: ' + month + ' ' +  year + ' ' + day;
         window.print();
         storeRecieptRecords = [];
     }
-
 </script>
 </html>
