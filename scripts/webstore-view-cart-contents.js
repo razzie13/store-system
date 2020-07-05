@@ -27,24 +27,29 @@ function viewCartContents()  {
     shoppingCartWindow.className = "shopping-cart-window";
     shoppingCartWindow.id = 'shopping-cart-window-items';
     
-    for (let i = 0; i > shoppingCart.length; i++)  {
+    for (let i = 0; i < shoppingCart.length; i++)  {
 
     // CREATE INDIVIDUAL CART ITEMS
     shoppingCartItems.id = 'cart-item-' + [i];
     shoppingCartItems.className = 'cart-line-item';
+
+    // POPULATE INDIVIDUAL CART ITEM TEXT HEADERS
+    cartItemCodeH3.innerText = shoppingCart[i].itemCode;
+    cartItemNameH3.innerText = shoppingCart[i].itemName;
+    cartItemPriceH3.innerText = shoppingCart[i].itemPrice;
+
+    //temporary fix - all quantities are set to 1 when added to cart with this script
+    cartItemQuantityH3.innerText = shoppingCart[i].ItemQuantity;
+    if (shoppingCart[i].ItemQuantity == undefined)  {
+        cartItemQuantityH3.innerText = 1
+    }
+    //cartItemTotalH3.innerText = shoppingCart[i].itemCode;
 
     cartItemCode.className = 'cart-item-code';
     cartItemName.className = 'cart-item-name';
     cartItemPrice.className = 'cart-item-price';
     cartItemQuantity.className = 'cart-item-quantity';
     //cartItemTotal.className = 'cart-item-total';
-
-    // POPULATE INDIVIDUAL CART ITEM TEXT HEADERS
-    cartItemCodeH3.innerText = shoppingCart[i].itemCode;
-    cartItemNameH3.innerText = shoppingCart[i].itemName;
-    cartItemPriceH3.innerText = shoppingCart[i].itemPrice;
-    cartItemQuantityH3.innerText = shoppingCart[i].cartItemQuantity;
-    //cartItemTotalH3.innerText = shoppingCart[i].itemCode;
 
     // ADD ITEM TEXT TO ITEM LINES
     cartItemCode.appendChild(cartItemCodeH3);

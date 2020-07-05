@@ -4,6 +4,7 @@ function addToCart(addedItemCode, addedItemName, addedItemPrice, addedItemQuanti
     if (addedItemQuantity == "")  {
         addedItemQuantity = 1
     }
+
     shoppingCart.push({itemCode: addedItemCode, itemName: addedItemName, itemPrice: addedItemPrice, itemQuantity: addedItemQuantity});
     //localStorage.setItem('local-food-store', shoppingCart);
     console.log(shoppingCart);

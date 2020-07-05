@@ -235,3 +235,27 @@ button:hover  {
     margin-left: 24px;
     font-weight: bold;
 }
+
+/* ------------------ */
+
+.cart-line-item {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+
+.cart-item-code  {
+    width: 20%;
+}
+.cart-item-name  {
+    width: 35%;
+}
+.cart-item-price  {
+    width: 15%;
+}
+.cart-item-quantity  {
+    width: 10%;
+}
+.cart-item-total  {
+    width: 20%;
+}
