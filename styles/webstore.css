@@ -96,8 +96,12 @@ h3, h4, h5  {
     text-rendering: optimizeLegibility;
 }
 
-button  {
+header button  {
     width: 134px;
+}
+
+button  {
+    width: 100%;
     background-color: green;
     color: white;
     height: 30px;
@@ -207,4 +211,27 @@ button:hover  {
 
 #food-products > #tropical  {
     background-color: rgb(220, 230, 134);
+}
+
+.price-and-amount  {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.price-and-amount input {
+    width: 40px;
+    height: 20px;
+    background-color: rgb(191, 255, 191);
+    border-style: solid;
+    margin-top: 14px;
+    border-width: 2px;
+    text-align: center;
+}
+
+.price-and-amount label {
+    margin-top: 21px;
+    margin-left: 24px;
+    font-weight: bold;
 }

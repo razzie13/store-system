@@ -39,8 +39,11 @@ Object.keys(uniqueCategoryList).forEach(function(item) {
         let foodItemCard = document.createElement('div');
         let foodItemName = document.createElement('h3');
         let foodItemPicture = document.createElement('img');
+        let foodItemPriceAndQuantity = document.createElement('div');
         let foodItemPrice = document.createElement('h4');
         let foodItemPromo = document.createElement('h4');
+        let foodItemQuantity = document.createElement('input');
+        let foodItemQuantityLabel = document.createElement('label');
 
         let br = document.createElement('br');
 
@@ -67,21 +70,38 @@ Object.keys(uniqueCategoryList).forEach(function(item) {
         foodItemPromo.innerHTML = 'sale ' + foodProducts[i].itemPromo + '<span>  reg ' + foodProducts[i].itemPrice + '</span>';
         foodItemPromo.className = 'food-item-promo'
 
-        addToCartButton.innerText = 'add to cart';
-        addToCartButton.id = foodProducts[i].itemCode;
-
-        addToCartButton.setAttribute('onclick', 'addToCart(' + foodProducts[i].itemCode + ')'); // add more arguments to this or add a lookup for the codes to the cart
         foodItemCard.appendChild(foodItemPicture);
         foodItemCard.appendChild(foodItemName);
 
+        foodItemPriceAndQuantity.id = 'price-amount-' + i;
+        foodItemPriceAndQuantity.className = 'price-and-amount';
+
         if (foodProducts[i].promo == false)  {
-            foodItemCard.appendChild(foodItemPrice);
+            foodItemPriceAndQuantity.appendChild(foodItemPrice);
 
         } else  {
-            foodItemCard.appendChild(foodItemPromo)
+            foodItemPriceAndQuantity.appendChild(foodItemPromo)
         }
 
+        foodItemQuantity.id = 'quantity-' + i;
+        foodItemQuantity.type = "number";
+
+        foodItemQuantityLabel.htmlFor =  'quantity-' + i;
+        foodItemQuantityLabel.innerHTML = "Quantity: ";
+
         
+        foodItemPriceAndQuantity.appendChild(foodItemQuantityLabel);
+        foodItemPriceAndQuantity.appendChild(foodItemQuantity);
+
+        foodItemCard.appendChild(foodItemPriceAndQuantity);
+
+        
+        addToCartButton.innerText = 'add to cart';
+        addToCartButton.id = foodProducts[i].itemCode;
+        //addToCartButton.setAttribute('onclick', 'addToCart(' + '"' + foodProducts[i].itemCode + '"' + ', ' + '"' + (foodProducts[i].itemBrand + ' ' +  foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType) + '"' + ', ' + '"' + foodProducts[i].itemPrice + '"' + ', ' + foodItemQuantity.value + ')'); // add more arguments to this or add a lookup for the codes to the cart
+        //addToCartButton.setAttribute('onclick', 'addToCart(' + '"' + foodProducts[i].itemCode + '"' + ', ' + '"' + (foodProducts[i].itemBrand + ' ' +  foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType) + '"' + ', ' + '"' + foodProducts[i].itemPrice + '"' + ', ' + '"' + foodItemQuantity.value + '"' + ')'); // add more arguments to this or add a lookup for the codes to the cart
+        addToCartButton.setAttribute('onclick', 'addToCart(' + '"' + foodProducts[i].itemCode + '"' + ', ' + '"' + (foodProducts[i].itemBrand + ' ' +  foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType) + '"' + ', ' + '"' + foodProducts[i].itemPrice + '"' + ', ' + '"' + foodItemQuantity.value + '"' + ')'); // add more arguments to this or add a lookup for the codes to the cart
+
 
         foodItemCard.appendChild(addToCartButton);
         itemCategorySection.appendChild(foodItemCard);
