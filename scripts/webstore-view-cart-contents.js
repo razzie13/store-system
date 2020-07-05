@@ -44,26 +44,27 @@ function viewCartContents()  {
         cartItemQuantityH3.innerText = 1
     }
     //cartItemTotalH3.innerText = shoppingCart[i].itemCode;
+    cartItemTotalH3.innerText = 'total';
 
-    cartItemCode.className = 'cart-item-code';
-    cartItemName.className = 'cart-item-name';
-    cartItemPrice.className = 'cart-item-price';
-    cartItemQuantity.className = 'cart-item-quantity';
-    //cartItemTotal.className = 'cart-item-total';
+    cartItemCode.className = 'cart-item-line cart-item-code';
+    cartItemName.className = 'cart-item-line cart-item-name';
+    cartItemPrice.className = 'cart-item-line cart-item-price';
+    cartItemQuantity.className = 'cart-item-line cart-item-quantity';
+    cartItemTotal.className = 'cart-item-line cart-item-total';
 
     // ADD ITEM TEXT TO ITEM LINES
     cartItemCode.appendChild(cartItemCodeH3);
     cartItemName.appendChild(cartItemNameH3);
     cartItemPrice.appendChild(cartItemPriceH3);
     cartItemQuantity.appendChild(cartItemQuantityH3);
-    //cartItemTotal.appendChild(cartItemTotalH3);
+    cartItemTotal.appendChild(cartItemTotalH3);
 
     // ADD CART ITEM NAMES TO CART ITEMS
     shoppingCartItems.appendChild(cartItemCode);
     shoppingCartItems.appendChild(cartItemName);
     shoppingCartItems.appendChild(cartItemPrice);
     shoppingCartItems.appendChild(cartItemQuantity);
-    //shoppingCartItems.appendChild(cartItemTotal);
+    shoppingCartItems.appendChild(cartItemTotal);
 
     // ADD ITEMS TO SHOPPING CART MODAL
     shoppingCartWindow.appendChild(shoppingCartItems);

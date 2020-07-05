@@ -85,17 +85,16 @@ Object.keys(uniqueCategoryList).forEach(function(item) {
 
         foodItemQuantity.id = 'quantity-' + i;
         foodItemQuantity.type = "number";
+        foodItemQuantity.min = "0";
 
         foodItemQuantityLabel.htmlFor =  'quantity-' + i;
         foodItemQuantityLabel.innerHTML = "Quantity: ";
-
         
         foodItemPriceAndQuantity.appendChild(foodItemQuantityLabel);
         foodItemPriceAndQuantity.appendChild(foodItemQuantity);
 
         foodItemCard.appendChild(foodItemPriceAndQuantity);
 
-        
         addToCartButton.innerText = 'add to cart';
         addToCartButton.id = foodProducts[i].itemCode;
         //addToCartButton.setAttribute('onclick', 'addToCart(' + '"' + foodProducts[i].itemCode + '"' + ', ' + '"' + (foodProducts[i].itemBrand + ' ' +  foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType) + '"' + ', ' + '"' + foodProducts[i].itemPrice + '"' + ', ' + foodItemQuantity.value + ')'); // add more arguments to this or add a lookup for the codes to the cart

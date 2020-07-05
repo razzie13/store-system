@@ -238,6 +238,11 @@ button:hover  {
 
 /* ------------------ */
 
+.cart-item-line  {
+    background-color: white;
+    margin: 1px;
+}
+
 .cart-line-item {
     display: flex;
     justify-content: space-between;
@@ -246,16 +251,25 @@ button:hover  {
 
 .cart-item-code  {
     width: 20%;
+    text-align: right;
+    padding-right: 14px;
 }
 .cart-item-name  {
     width: 35%;
+    text-align: left;
+    padding-left: 14px;
 }
 .cart-item-price  {
     width: 15%;
+    text-align: right;
+    padding-right: 14px;
 }
 .cart-item-quantity  {
     width: 10%;
+    text-align: center;
 }
 .cart-item-total  {
     width: 20%;
+    text-align: right;
+    padding-right: 14px;
 }
