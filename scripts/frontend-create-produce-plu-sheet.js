@@ -64,7 +64,7 @@ Object.keys(uniqueCategoryList).forEach(function(item) {
         //    foodItemPicture.src = "images/produce/z-image-not-available.jpg";
         //}
         //foodItemPicture.width = 200;
-        pluSheetLeft.innerText = foodProducts[i].itemBrand + ' ' +  foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType;
+        pluSheetLeft.innerText = foodProducts[i].itemBrand + ' ' +  foodProducts[i].itemDescription + ' ' + foodProducts[i].itemType + ' ';
         pluSheetRight.innerText = foodProducts[i].itemCode;
 
         foodItemName.appendChild(pluSheetLeft);

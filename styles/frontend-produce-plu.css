@@ -1,16 +1,14 @@
 #produce-plu-code-list  {
     width: 595px;
-    height: 842px;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
-    align-items: flex-start;
 }
 
 #produce-plu-code-list div  {
-    width: 190px;
+    width: 185px;
     background-color: gray;
     margin: 5px;
+    overflow: hidden;
 }
 
 #produce-plu-code-list h3  {
